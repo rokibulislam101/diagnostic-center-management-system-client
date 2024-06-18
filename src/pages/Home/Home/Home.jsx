@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import Slider from '../Banner/Slider';
 import FeaturedTests from '../FeaturedTests/FeaturedTests';
+import Conversion from '../Conversion/Conversion';
+import Doctors from '../Doctors/Doctors';
 
 const Home = () => {
   return (
@@ -10,6 +12,8 @@ const Home = () => {
       </Helmet>
       <Slider></Slider>
       <FeaturedTests></FeaturedTests>
+      <Conversion></Conversion>
+      <Doctors></Doctors>
     </div>
   );
 };

@@ -1,0 +1,51 @@
+[
+  {
+    "_id": 1,
+    "name": "Dr. John Smith",
+    "image": "https://i.ibb.co/QPYbXyP/images-4.jpg",
+    "description": "Experienced cardiologist with over 20 years of experience in treating heart-related conditions.",
+    "category": "Cardiology"
+  },
+  {
+    "_id": 2,
+    "name": "Dr. Emily Davis",
+    "image": "https://i.ibb.co/xLrcy22/images-3.jpg",
+    "description": "Renowned neurologist specializing in the diagnosis and treatment of neurological disorders.",
+    "category": "Neurology"
+  },
+  {
+    "_id": 3,
+    "name": "Dr. Michael Johnson",
+    "image": "https://i.ibb.co/Q8tdX7G/images-2.jpg",
+    "description": "Orthopedic surgeon dedicated to providing the best care for musculoskeletal system issues.",
+    "category": "Orthopedics"
+  },
+  {
+    "_id": 4,
+    "name": "Dr. Sarah Lee",
+    "image": "https://i.ibb.co/QPYbXyP/images-4.jpg",
+    "description": "Pediatrician with a passion for children's health and well-being, offering comprehensive pediatric care.",
+    "category": "Pediatrics"
+  },
+  {
+    "_id": 5,
+    "name": "Dr. David Brown",
+    "image": "https://i.ibb.co/Gc2LdMQ/images.jpg",
+    "description": "Highly skilled dermatologist focused on treating skin, hair, and nail conditions.",
+    "category": "Dermatology"
+  },
+  {
+    "_id": 6,
+    "name": "Dr. Laura Wilson",
+    "image": "https://i.ibb.co/KFpnztt/download-3.jpg",
+    "description": "Expert oncologist dedicated to providing compassionate care to cancer patients.",
+    "category": "Oncology"
+  },
+  {
+    "_id": 7,
+    "name": "Dr. James Martinez",
+    "image": "https://i.ibb.co/P9mMwR6/download-2.jpg",
+    "description": "Gastroenterologist specializing in the diagnosis and treatment of digestive system disorders.",
+    "category": "Gastroenterology"
+  }
+]
