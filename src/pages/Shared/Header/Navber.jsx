@@ -3,11 +3,21 @@ const Navber = () => {
 
   const navOptions = (
     <>
-      <li>Home</li>
-      <li>All Tests</li>
-      <li>News & Events</li>
-      <li>About Us</li>
-      <li>Contact Us</li>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/">All Tests</a>
+      </li>
+      <li>
+        <a href="/">News & Events</a>
+      </li>
+      <li>
+        <a href="/">About Us</a>
+      </li>
+      <li>
+        <a href="/">Contact Us</a>
+      </li>
     </>
   );
 
