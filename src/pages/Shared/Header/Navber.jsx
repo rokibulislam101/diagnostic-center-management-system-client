@@ -1,22 +1,20 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navber = () => {
-
   const navOptions = (
     <>
       <li>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a href="/">All Tests</a>
+        <Link to="/AllTests">All Tests</Link>
       </li>
       <li>
-        <a href="/">News & Events</a>
+        <Link to="/NewsEvents">News & Events</Link>
       </li>
       <li>
-        <a href="/">About Us</a>
-      </li>
-      <li>
-        <a href="/">Contact Us</a>
+        <Link to="/About">About Us</Link>
       </li>
     </>
   );
@@ -52,7 +50,9 @@ const Navber = () => {
           <a className="btn btn-ghost text-2xl">PEACE</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-3 text-lg">{navOptions}</ul>
+          <ul className="menu menu-horizontal px-1 gap-3 text-lg">
+            {navOptions}
+          </ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Button</a>
@@ -60,6 +60,6 @@ const Navber = () => {
       </div>
     </>
   );
-}
+};
 
-export default Navber
+export default Navber;

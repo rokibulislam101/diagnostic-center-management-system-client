@@ -1,0 +1,86 @@
+[
+  {
+    "_id": "1",
+    "image": "https://i.ibb.co/MVGXJXD/ftimg05.jpg",
+    "dateline": "2024-06-25",
+    "category": "Blood Test",
+    "description": "A comprehensive blood test to measure various health indicators, including blood cell counts, glucose levels, and more."
+  },
+  {
+    "_id": "2",
+    "image": "https://i.ibb.co/56KNvsC/pexels-mart-production-7089336.jpg",
+    "dateline": "2024-06-22",
+    "category": "Radiology",
+    "description": "X-ray imaging to help diagnose various conditions by providing detailed images of bones and other internal structures."
+  },
+  {
+    "_id": "3",
+    "image": "https://i.ibb.co/dMnXmyG/ftimg03.jpg",
+    "dateline": "2024-07-11",
+    "category": "Ultrasound",
+    "description": "Ultrasound imaging using high-frequency sound waves to capture live images from the inside of the body."
+  },
+  {
+    "_id": "4",
+    "image": "https://i.ibb.co/YQn419s/pexels-cristian-rojas-8460125.jpg",
+    "dateline": "2024-07-14",
+    "category": "Cardiology",
+    "description": "Electrocardiogram (EKG) test to measure the electrical activity of the heart and detect any abnormalities."
+  },
+  {
+    "_id": "5",
+    "image": "https://i.ibb.co/8dPSKKz/pexels-ivan-samkov-6436249.jpg",
+    "dateline": "2024-07-14",
+    "category": "Mammography",
+    "description": "Mammogram to screen for breast cancer by taking X-ray images of the breast."
+  },
+  {
+    "_id": "6",
+    "image": "https://i.ibb.co/2MKrMRF/pexels-shvetsa-4226219.jpg",
+    "dateline": "2024-06-30",
+    "category": "Radiology",
+    "description": "Computed Tomography (CT) scan that combines X-ray images to create cross-sectional views of the body."
+  },
+  {
+    "_id": "7",
+    "image": "https://i.ibb.co/v1br3HW/pexels-mart-production-7089396.jpg",
+    "dateline": "2024-07-07",
+    "category": "Gynecology",
+    "description": "Pap smear test to screen for cervical cancer by collecting cells from the cervix."
+  },
+  {
+    "_id": "8",
+    "image": "https://i.ibb.co/prmg0T1/pexels-pavel-danilyuk-7108344.jpg",
+    "dateline": "2024-06-30",
+    "category": "Cardiology",
+    "description": "Stress test to monitor the heart's activity during physical exertion."
+  },
+  {
+    "_id": "9",
+    "image": "https://i.ibb.co/1QTL5VN/ftimg06.jpg",
+    "dateline": "2024-07-16",
+    "category": "Blood Test",
+    "description": "Lipid panel to measure cholesterol levels and assess the risk of heart disease."
+  },
+  {
+    "_id": "10",
+    "image": "https://i.ibb.co/4fvr21z/pexels-tima-miroshnichenko-8376148.jpg",
+    "dateline": "2024-06-30",
+    "category": "Radiology",
+    "description": "Magnetic Resonance Imaging (MRI) scan to produce detailed images of organs and tissues within the body."
+  },
+  {
+    "_id": "11",
+    "image": "https://i.ibb.co/zXwRkf7/Endocrinology.jpg",
+    "dateline": "2024-07-18",
+    "category": "Endocrinology",
+    "description": "Thyroid function test to evaluate the performance of the thyroid gland and diagnose related conditions."
+  },
+  {
+    "_id": "12",
+    "image": "https://i.ibb.co/b74MBjD/pexels-chokniti-khongchum-1197604-2280571.jpg",
+    "dateline": "2024-07-18",
+    "category": "Urine Test",
+    "description": "Urinalysis to examine urine for a range of disorders, such as urinary tract infections, kidney disease, and diabetes."
+  }
+]

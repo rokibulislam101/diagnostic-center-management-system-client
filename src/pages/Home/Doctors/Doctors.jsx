@@ -1,32 +1,3 @@
-// import { useEffect, useState } from 'react';
-// import DoctorsCard from '../../Shared/DoctorsCard/DoctorsCard';
-
-// const Doctors = () => {
-//   const [doctors, setDoctors] = useState([]);
-
-//   useEffect(() => {
-//     fetch('doctors.json')
-//       .then(res => res.json())
-//       .then(data => setDoctors(data));
-//   }, []);
-
-//   return (
-//     <div className="my-10">
-//       <div className="flex flex-col justify-center">
-//         <h2 className="text-3xl font-semibold text-center">Meet Our Doctors</h2>
-//       </div>
-//       <div className="flex flex-wrap justify-center gap-10 my-10">
-//         {doctors.map(data => (
-//           <DoctorsCard key={data._id} data={data} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Doctors;
-
-
 
 import { useEffect, useState } from 'react';
 import DoctorsCard from '../../Shared/DoctorsCard/DoctorsCard';
