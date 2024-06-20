@@ -1,16 +1,10 @@
 import { useState } from 'react';
 import DoctorsCard from '../../Shared/DoctorsCard/DoctorsCard';
-import useDoctors from '../../Hooks/useDoctors';
+import useDoctors from '../../../Hooks/useDoctors';
 
 const Doctors = () => {
   const [doctors] = useDoctors();
   const [showAll, setShowAll] = useState(false);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:5000/doctors')
-  //     .then(res => res.json())
-  //     .then(data => setDoctors(data));
-  // }, []);
 
   const handleShowAll = () => {
     setShowAll(true);
