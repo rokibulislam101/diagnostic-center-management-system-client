@@ -28,7 +28,7 @@ const NewEvents = () => {
               superior patient care. This comprehensive guide explores
               innovative strategies to modernize diagnostic centers.
             </p>
-            <button className="btn mt-5 bg-indigo-500 hover:bg-indigo-700 text-white">
+            <button className="btn mt-5 rounded-full bg-indigo-500 hover:bg-indigo-700 text-white">
               Get Appointment
             </button>
           </div>

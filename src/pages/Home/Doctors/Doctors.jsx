@@ -1,16 +1,16 @@
-
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DoctorsCard from '../../Shared/DoctorsCard/DoctorsCard';
+import useDoctors from '../../Hooks/useDoctors';
 
 const Doctors = () => {
-  const [doctors, setDoctors] = useState([]);
+  const [doctors] = useDoctors();
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    fetch('doctors.json')
-      .then(res => res.json())
-      .then(data => setDoctors(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/doctors')
+  //     .then(res => res.json())
+  //     .then(data => setDoctors(data));
+  // }, []);
 
   const handleShowAll = () => {
     setShowAll(true);
@@ -39,14 +39,14 @@ const Doctors = () => {
       <div className="flex justify-center">
         {showAll ? (
           <button
-            className="px-4 py-2 bg-indigo-500 font-bold text-white rounded"
+            className="px-4 py-2 bg-indigo-500 font-bold text-white rounded-full"
             onClick={handleShowLess}
           >
             Show Less
           </button>
         ) : (
           <button
-            className="px-4 py-2 bg-indigo-500 font-bold text-white rounded"
+            className="px-4 py-2 bg-indigo-500 font-bold text-white rounded-full"
             onClick={handleShowAll}
           >
             Show All

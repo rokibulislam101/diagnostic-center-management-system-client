@@ -14,7 +14,7 @@ const Conversion = () => {
             superior patient care. This comprehensive guide explores innovative
             strategies to modernize diagnostic centers.
           </p>
-          <button className="btn mt-5 bg-indigo-500 hover:bg-indigo-700 text-white">Get Appointment</button>
+          <button className="btn mt-5 rounded-full bg-indigo-500 hover:bg-indigo-700 text-white">Get Appointment</button>
         </div>
         <div className="rounded-2xl md:w-[600px] mt-10 md:mt-0">
           <img className="w-full" src={cvImg} alt="" />

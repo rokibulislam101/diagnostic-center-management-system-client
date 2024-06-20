@@ -8,7 +8,7 @@ const TestsDetails = () => {
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    fetch('allTests.json')
+    fetch('http://localhost:5000/tests')
       .then(res => res.json())
       .then(data => setTests(data));
   }, []);
