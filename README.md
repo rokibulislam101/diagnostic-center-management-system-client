@@ -1,8 +1,7 @@
-# React + Vite
+1. **Assignment Category/variant: **- assignment12_category_0004
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+4. **Front-end Live Site Link:** - https://assignment12-bf39b.firebaseapp.com/
 
-Currently, two official plugins are available:
+5. **Client Side GitHub Repository Link:**- https://github.com/programming-hero-web-course1/b9a12-client-side-rokibulislam101
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+6. **Server Side GitHub Repository Link:**- https://github.com/programming-hero-web-course1/b9a12-server-side-rokibulislam101
