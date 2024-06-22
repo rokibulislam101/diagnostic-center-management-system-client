@@ -6,37 +6,47 @@ import About from '../pages/About/About/About';
 import AllTests from '../pages/AllTests/AllTests/AllTests';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
+import Secret from '../pages/Shared/Secret/Secret';
+import PrivateRoutes from './PrivateRoutes';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main></Main>,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Home></Home>,
       },
       {
-        path: "/AllTests",
+        path: '/AllTests',
         element: <AllTests></AllTests>,
       },
       {
-        path: "/NewsEvents",
+        path: '/NewsEvents',
         element: <NewsEvents></NewsEvents>,
       },
       {
-        path: "/About",
+        path: '/About',
         element: <About></About>,
       },
       {
-        path: "/Login",
-        element: <Login></Login>
+        path: '/Login',
+        element: <Login></Login>,
       },
       {
-        path: "/Register",
-        element: <Register></Register>
-      }
-    ]
+        path: '/Register',
+        element: <Register></Register>,
+      },
+      {
+        path: '/Secret',
+        element: (
+          <PrivateRoutes>
+            <Secret></Secret>,
+          </PrivateRoutes>
+        ),
+      },
+    ],
   },
 ]);
 

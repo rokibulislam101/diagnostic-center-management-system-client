@@ -1,8 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmit = async data => {
+    console.log(data);
+    try {
+      const result = await createUser(data.email, data.password);
+      const loggedUser = result.user;
+      console.log(loggedUser);
+
+      await updateUserProfile(data.name, data.photoURL);
+      console.log('User profile info updated');
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'User created successfully.',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      reset();
+      navigate('/');
+    } catch (error) {
+      console.error('Error creating user:', error);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Error creating user.',
+        text: error.message,
+        showConfirmButton: true,
+      });
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -26,31 +70,36 @@ const Register = () => {
             <h1 className="text-center text-5xl font-bold">
               Register To Your Account
             </h1>
-            <form className="w-full sm:px-32 space-y-5 mt-5">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full sm:px-32 space-y-5 mt-5"
+            >
               <div className="form-control text-xl">
                 <input
                   type="text"
                   placeholder="Your Full Name"
                   name="name"
                   className="input rounded-full bg-green-100"
-                  // {...register('admin', { required: true })}
+                  {...register('name', { required: true })}
                 />
-                {/* {errors.FullName && (
-                  <span className="text-red-500">This field is required</span>
-                )} */}
+                {errors.name && (
+                  <span className="text-red-500">Name is required</span>
+                )}
               </div>
 
               <div className="form-control">
                 <input
                   type="text"
                   placeholder="Your Photo URL"
-                  name="photo"
+                  name="photoURL"
                   className="input rounded-full bg-green-100"
-                  // {...register('photo')}
+                  {...register('photoURL')}
                 />
-                {/* {errors.image && (
-                  <span className="text-red-500">This field is required</span>
-                )} */}
+                {errors.photoURL && (
+                  <span className="text-red-500">
+                    Profile photo is required
+                  </span>
+                )}
               </div>
 
               <div className="form-control">
@@ -59,31 +108,47 @@ const Register = () => {
                   placeholder="Your Email"
                   name="email"
                   className="input rounded-full bg-green-100"
-                  // {...register('email', { required: true })}
+                  {...register('email', { required: true })}
                 />
-                {/* {errors.email && (
-                  <span className="text-red-500">This field is required</span>
-                )} */}
+                {errors.email && (
+                  <span className="text-red-500">Email is required</span>
+                )}
               </div>
 
-              <div className="form-control relative">
+              <div className="form-control">
                 <input
-                  // type={showPassword ? 'text' : 'password'}
+                  type="password"
+                  {...register('password', {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 20,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  })}
                   placeholder="Your Password"
-                  name="password"
                   className="input rounded-full bg-green-100"
-                  // {...register('password', { required: true })}
                 />
-                {/* {errors.password && (
-                  <span className="text-red-500">This field is required</span>
-                )} */}
-
-                {/* <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-2/3 right-10"
-                >
-                  {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
-                </span> */}
+                {errors.password?.type === 'required' && (
+                  <p className="text-red-500">Password is required</p>
+                )}
+                {errors.password?.type === 'minLength' && (
+                  <p className="text-red-500">Password must be 6 characters</p>
+                )}
+                {errors.password?.type === 'maxLength' && (
+                  <p className="text-red-500">
+                    Password must be less than 20 characters
+                  </p>
+                )}
+                {errors.password?.type === 'pattern' && (
+                  <p className="text-red-500">
+                    Password must have one uppercase, one lowercase, one number,
+                    and one special character.
+                  </p>
+                )}
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
               </div>
               <div className="form-control flex items-center mt-6">
                 <button
