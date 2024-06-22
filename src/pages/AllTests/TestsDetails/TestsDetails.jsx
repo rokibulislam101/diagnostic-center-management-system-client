@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import TestsCard from '../../Shared/TestsCard/TestsCard';
 import bannerImg from '../../../assets/events/banner.jpg';
@@ -8,7 +7,7 @@ const TestsDetails = () => {
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/tests')
+    fetch('https://finalasmt-project-server.vercel.apptests')
       .then(res => res.json())
       .then(data => setTests(data));
   }, []);
@@ -58,4 +57,3 @@ const TestsDetails = () => {
 };
 
 export default TestsDetails;
-

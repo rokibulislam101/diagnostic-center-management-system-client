@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useDoctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/doctors')
+    fetch('https://finalasmt-project-server.vercel.appdoctors')
       .then(res => res.json())
       .then(data => {
         setDoctors(data);
@@ -13,7 +13,7 @@ const useDoctors = () => {
       });
   }, []);
 
-  return [doctors, loading]
-}
+  return [doctors, loading];
+};
 
-export default useDoctors
+export default useDoctors;

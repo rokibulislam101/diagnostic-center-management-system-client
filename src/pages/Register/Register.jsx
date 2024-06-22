@@ -15,36 +15,25 @@ const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const onSubmit = async data => {
-    console.log(data);
-    try {
-      const result = await createUser(data.email, data.password);
-      const loggedUser = result.user;
-      console.log(loggedUser);
-
-      await updateUserProfile(data.name, data.photoURL);
-      console.log('User profile info updated');
-
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'User created successfully.',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-
-      reset();
-      navigate('/');
-    } catch (error) {
-      console.error('Error creating user:', error);
-      Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: 'Error creating user.',
-        text: error.message,
-        showConfirmButton: true,
-      });
-    }
+  const onSubmit = data => {
+    createUser(data.email, data.password)
+      .then(result => {
+        const loggedUser = result.user;
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            reset();
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'User created successfully.',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate('/');
+          })
+          .catch(error => console.error('Profile update error:', error));
+      })
+      .catch(error => console.error('Create user error:', error));
   };
 
   return (
@@ -52,7 +41,6 @@ const Register = () => {
       <Helmet>
         <title>Register</title>
       </Helmet>
-
       <div className="flex justify-center items-center">
         <div className="sm:flex shrink-0 w-full h-full max-w-screen-lg shadow-2xl bg-base-100 border border-green-500 overflow-hidden">
           <div className="sm:w-1/3 bg-green-400 h-screen text-white text-center flex flex-col justify-center items-center p-10">
@@ -78,7 +66,6 @@ const Register = () => {
                 <input
                   type="text"
                   placeholder="Your Full Name"
-                  name="name"
                   className="input rounded-full bg-green-100"
                   {...register('name', { required: true })}
                 />
@@ -86,27 +73,18 @@ const Register = () => {
                   <span className="text-red-500">Name is required</span>
                 )}
               </div>
-
               <div className="form-control">
                 <input
                   type="text"
                   placeholder="Your Photo URL"
-                  name="photoURL"
                   className="input rounded-full bg-green-100"
                   {...register('photoURL')}
                 />
-                {errors.photoURL && (
-                  <span className="text-red-500">
-                    Profile photo is required
-                  </span>
-                )}
               </div>
-
               <div className="form-control">
                 <input
                   type="email"
                   placeholder="Your Email"
-                  name="email"
                   className="input rounded-full bg-green-100"
                   {...register('email', { required: true })}
                 />
@@ -114,18 +92,17 @@ const Register = () => {
                   <span className="text-red-500">Email is required</span>
                 )}
               </div>
-
               <div className="form-control">
                 <input
                   type="password"
+                  placeholder="Your Password"
+                  className="input rounded-full bg-green-100"
                   {...register('password', {
                     required: true,
                     minLength: 6,
                     maxLength: 20,
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
-                  placeholder="Your Password"
-                  className="input rounded-full bg-green-100"
                 />
                 {errors.password?.type === 'required' && (
                   <p className="text-red-500">Password is required</p>
@@ -141,14 +118,9 @@ const Register = () => {
                 {errors.password?.type === 'pattern' && (
                   <p className="text-red-500">
                     Password must have one uppercase, one lowercase, one number,
-                    and one special character.
+                    and one special character
                   </p>
                 )}
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control flex items-center mt-6">
                 <button

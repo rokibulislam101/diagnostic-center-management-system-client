@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Main from "../Layout/Main";
+import Main from '../Layout/Main';
 import Home from '../pages/Home/Home/Home';
 import NewsEvents from '../pages/NewsEvents/NewsEvents/NewsEvents';
 import About from '../pages/About/About/About';
@@ -8,6 +8,9 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Secret from '../pages/Shared/Secret/Secret';
 import PrivateRoutes from './PrivateRoutes';
+import Appointment from '../pages/Appointment/Appointment';
+import Dashboard from '../Layout/Dashboard';
+import UserHome from '../pages/Dashboard/UserHome/UserHome';
 
 export const router = createBrowserRouter([
   {
@@ -39,14 +42,36 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
+        path: '/Appointment/:id',
+        element: (
+          <PrivateRoutes>
+            <Appointment></Appointment>
+          </PrivateRoutes>
+        ),
+      },
+      {
         path: '/Secret',
         element: (
           <PrivateRoutes>
-            <Secret></Secret>,
+            <Secret></Secret>
           </PrivateRoutes>
         ),
       },
     ],
   },
+  {
+    path: 'Dashboard',
+    element: (
+      <PrivateRoutes>
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
+    children: [
+      // normal user routes
+      {
+        path: 'UserHome',
+        element: <UserHome></UserHome>,
+      },
+    ],
+  },
 ]);
-
