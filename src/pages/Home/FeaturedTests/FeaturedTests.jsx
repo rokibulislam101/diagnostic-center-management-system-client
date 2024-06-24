@@ -5,7 +5,7 @@ const FeaturedTests = () => {
   const [tests, setTests] = useState([]);
 
   useEffect(() => {
-    fetch('https://finalasmt-project-server.vercel.apptests')
+    fetch('http://localhost:5000/tests')
       .then(res => res.json())
       .then(data => setTests(data));
   }, []);

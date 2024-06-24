@@ -10,7 +10,10 @@ import Secret from '../pages/Shared/Secret/Secret';
 import PrivateRoutes from './PrivateRoutes';
 import Appointment from '../pages/Appointment/Appointment';
 import Dashboard from '../Layout/Dashboard';
-import UserHome from '../pages/Dashboard/UserHome/UserHome';
+import MyAppointment from '../pages/Dashboard/UserHome/MyAppointment';
+import MyTestResults from '../pages/Dashboard/UserHome/MyTestResults';
+import Profile from '../pages/Dashboard/UserHome/Profile';
+import AllUsers from '../pages/Dashboard/AdminHome/AllUsers';
 
 export const router = createBrowserRouter([
   {
@@ -69,8 +72,20 @@ export const router = createBrowserRouter([
     children: [
       // normal user routes
       {
-        path: 'UserHome',
-        element: <UserHome></UserHome>,
+        path: 'Profile',
+        element: <Profile></Profile>,
+      },
+      {
+        path: 'MyAppointment',
+        element: <MyAppointment></MyAppointment>,
+      },
+      {
+        path: 'MyTestResults',
+        element: <MyTestResults></MyTestResults>,
+      },
+      {
+        path: 'AllUsers',
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

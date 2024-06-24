@@ -1,19 +1,96 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
+const districts = {
+  Dhaka: [
+    'Dhaka',
+    'Faridpur',
+    'Gazipur',
+    'Gopalganj',
+    'Kishoreganj',
+    'Madaripur',
+    'Manikganj',
+    'Munshiganj',
+    'Narayanganj',
+    'Narsingdi',
+    'Rajbari',
+    'Shariatpur',
+    'Tangail',
+  ],
+  Chittagong: [
+    'Bandarban',
+    'Brahmanbaria',
+    'Chandpur',
+    'Chittagong',
+    'Comilla',
+    "Cox's Bazar",
+    'Feni',
+    'Khagrachari',
+    'Lakshmipur',
+    'Noakhali',
+    'Rangamati',
+  ],
+  Barisal: [
+    'Barguna',
+    'Barisal',
+    'Bhola',
+    'Jhalokathi',
+    'Patuakhali',
+    'Pirojpur',
+  ],
+  Khulna: [
+    'Bagerhat',
+    'Chuadanga',
+    'Jessore',
+    'Jhenaidah',
+    'Khulna',
+    'Kushtia',
+    'Magura',
+    'Meherpur',
+    'Narail',
+    'Satkhira',
+  ],
+  Mymensingh: ['Jamalpur', 'Mymensingh', 'Netrokona', 'Sherpur'],
+  Rajshahi: [
+    'Bogra',
+    'Joypurhat',
+    'Naogaon',
+    'Natore',
+    'Nawabganj',
+    'Pabna',
+    'Rajshahi',
+    'Sirajganj',
+  ],
+  Rangpur: [
+    'Dinajpur',
+    'Gaibandha',
+    'Kurigram',
+    'Lalmonirhat',
+    'Nilphamari',
+    'Panchagarh',
+    'Rangpur',
+    'Thakurgaon',
+  ],
+  Sylhet: ['Habiganj', 'Moulvibazar', 'Sunamganj', 'Sylhet'],
+};
+
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [selectedDistrict, setSelectedDistrict] = useState('');
 
   const onSubmit = data => {
     createUser(data.email, data.password)
@@ -21,20 +98,36 @@ const Register = () => {
         const loggedUser = result.user;
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            reset();
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'User created successfully.',
-              showConfirmButton: false,
-              timer: 1500,
+            // create user entry in the database
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+              photoURL: data.photoURL,
+              bloodgroup: data.bloodgroup,
+              district: data.district,
+              upazila: data.upazila,
+            };
+            axiosPublic.post('/users', userInfo).then(res => {
+              if (res.data.insertedId) {
+                console.log('user added to the database');
+                reset();
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'User created successfully.',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate('/');
+              }
             });
-            navigate('/');
           })
           .catch(error => console.error('Profile update error:', error));
       })
       .catch(error => console.error('Create user error:', error));
   };
+
+  const password = watch('password');
 
   return (
     <div>
@@ -93,6 +186,61 @@ const Register = () => {
                 )}
               </div>
               <div className="form-control">
+                <select
+                  className="input rounded-full bg-green-100"
+                  {...register('bloodgroup', { required: true })}
+                >
+                  <option value="">Select Blood Group</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+                {errors.bloodgroup && (
+                  <span className="text-red-500">Blood group is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <select
+                  className="input rounded-full bg-green-100"
+                  {...register('district', { required: true })}
+                  onChange={e => setSelectedDistrict(e.target.value)}
+                >
+                  <option value="">Select District</option>
+                  {Object.keys(districts).map(division =>
+                    districts[division].map(district => (
+                      <option key={district} value={district}>
+                        {district}
+                      </option>
+                    ))
+                  )}
+                </select>
+                {errors.district && (
+                  <span className="text-red-500">District is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <select
+                  className="input rounded-full bg-green-100"
+                  {...register('upazila', { required: true })}
+                >
+                  <option value="">Select Upazila</option>
+                  {selectedDistrict &&
+                    districts[selectedDistrict]?.map(upazila => (
+                      <option key={upazila} value={upazila}>
+                        {upazila}
+                      </option>
+                    ))}
+                </select>
+                {errors.upazila && (
+                  <span className="text-red-500">Upazila is required</span>
+                )}
+              </div>
+              <div className="form-control">
                 <input
                   type="password"
                   placeholder="Your Password"
@@ -119,6 +267,23 @@ const Register = () => {
                   <p className="text-red-500">
                     Password must have one uppercase, one lowercase, one number,
                     and one special character
+                  </p>
+                )}
+              </div>
+              <div className="form-control">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="input rounded-full bg-green-100"
+                  {...register('confirm_password', {
+                    required: true,
+                    validate: value =>
+                      value === password || 'Passwords do not match',
+                  })}
+                />
+                {errors.confirm_password && (
+                  <p className="text-red-500">
+                    {errors.confirm_password.message}
                   </p>
                 )}
               </div>

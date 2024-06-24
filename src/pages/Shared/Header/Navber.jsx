@@ -90,8 +90,8 @@ const Navber = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/" className="btn">
-          Get Started
+        <Link to="/Dashboard" className="btn">
+          Dashboard
         </Link>
       </div>
     </div>

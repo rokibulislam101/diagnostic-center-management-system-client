@@ -19,9 +19,7 @@ const Appointment = () => {
   useEffect(() => {
     const fetchTest = async () => {
       try {
-        const response = await axios.get(
-          `https://finalasmt-project-server.vercel.apptests/${id}`
-        );
+        const response = await axios.get(`http://localhost:5000/tests/${id}`);
         setTest(response.data);
       } catch (err) {
         setError('Failed to fetch data');
@@ -45,10 +43,7 @@ const Appointment = () => {
     };
 
     try {
-      await axios.post(
-        'https://finalasmt-project-server.vercel.appreservations',
-        bookingData
-      );
+      await axios.post('http://localhost:5000/reservations', bookingData);
       Swal.fire({
         title: 'Success!',
         text: 'Appointment successful',
@@ -158,7 +153,7 @@ export default Appointment;
 //   useEffect(() => {
 //     const fetchTest = async () => {
 //       try {
-//         const response = await axios.get(`https://finalasmt-project-server.vercel.apptests/${id}`);
+//         const response = await axios.get(`http://localhost:5000/tests/${id}`);
 //         setTest(response.data);
 //       } catch (err) {
 //         setError('Failed to fetch data');
@@ -181,7 +176,7 @@ export default Appointment;
 
 //     try {
 //       const token = localStorage.getItem('token');
-//       await axios.post('https://finalasmt-project-server.vercel.appreservations', bookingData, {
+//       await axios.post('http://localhost:5000/reservations', bookingData, {
 //         headers: { Authorization: `Bearer ${token}` },
 //       });
 //       Swal.fire({
