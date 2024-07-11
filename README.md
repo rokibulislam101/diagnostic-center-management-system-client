@@ -1,8 +1,9 @@
 # React + Vite
 ## Run for localhost:
 
--clone:https://github.com/rokibulislam101/diagnostic-center-management-system-client
--clone:https://github.com/rokibulislam101/diagnostic-center-management-system-server
+-clone: https://github.com/rokibulislam101/diagnostic-center-management-system-client
+-clone: https://github.com/rokibulislam101/diagnostic-center-management-system-server
+
 -npm i
 -npm run dev
 
